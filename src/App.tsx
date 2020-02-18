@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Route } from 'react-router';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Counter from './components/Counter';
-import FetchData from './components/FetchData';
+import Layout from './views/Layout';
+import Home from './views/Login';
+import Counter from './views/authed/Counter';
+import FetchData from './views/authed/FetchData';
 
 import './custom.css'
 
