@@ -30,10 +30,10 @@ class HttpConnection {
     setBaseURL(serverConfig) {
         switch (process.env.NODE_ENV) {
             case "production":
-                this.BASE_URL = `http://${serverConfig.remote}.bank.com/${serverConfig.path}`;
+                this.BASE_URL = `https://bank.com${serverConfig.path}`;
                 break;
             default:  // development
-                this.BASE_URL = `http://localhost:${serverConfig.local}/${serverConfig.path}`;
+                this.BASE_URL = `https://3bapp.innovantics.com${serverConfig.path}`;
         }
     }
 
@@ -41,7 +41,7 @@ class HttpConnection {
         return {
             admin: (config) => {
                 config.method = method;
-                this.setBaseURL({local: 3001, remote: "", path: "adminapp"});
+                this.setBaseURL({local: 3001, remote: "", path: "/adminapp"});
 
                 return this.connect(config)
             },
@@ -64,11 +64,6 @@ class HttpConnection {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${this.session.getToken()}`;//Bearer
             } else {
                 delete axios.defaults.headers.common['Authorization'];
-            }
-            //set org id is valid
-            let org = Session.getOrgDetail();
-            if (org) {
-                axios.defaults.headers.common['Organization'] = org.id;
             }
 
             // Handle ladda
@@ -97,7 +92,7 @@ class HttpConnection {
                 if (ladda) {
                     ladda.stop();
                 }
-                // HRMS OK RESPONSE FORMAT
+                // BACKEND OK RESPONSE FORMAT
                 // {
                 //     "data": {},
                 //     "message": "string"
@@ -121,7 +116,7 @@ class HttpConnection {
                     response.message = "Request was cancelled";
                     console.log('Request canceled', error.message);
                 }else{
-                    // HRMS ERROR RESPONSE FORMAT
+                    // BACKEND ERROR RESPONSE FORMAT
                     // {
                     //     "code": "string",
                     //     "error": "string",

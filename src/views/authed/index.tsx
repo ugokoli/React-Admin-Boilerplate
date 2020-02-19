@@ -5,7 +5,7 @@ import FetchData from "./FetchData";
 
 export default () => (
     <React.Fragment>
-        <Route path='/' component={Counter} />
+        <Route exact path='/' component={Counter} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
     </React.Fragment>

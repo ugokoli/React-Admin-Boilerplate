@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route } from 'react-router';
+import {Route, Switch} from 'react-router';
 import Layout from './views/layouts/Layout';
 import LayoutAuthed from "./views/layouts/LayoutAuthed";
 import Login from './views/Login';
@@ -11,15 +11,19 @@ import Session from "./utils/Session";
 export default () => {
     const session = new Session();
 
-    return session.loggedIn() === true
+    return session.loggedIn() !== true
         ? (
                 <Layout>
-                    <Route exact path='/' component={Login} />
+                    <Switch>
+                        <Route exact path='/' component={Login} />
+                    </Switch>
                 </Layout>
             )
         : (
                 <LayoutAuthed>
-                    <ProtectedViews />
+                    <Switch>
+                        <ProtectedViews />
+                    </Switch>
                 </LayoutAuthed>
             )
 };
