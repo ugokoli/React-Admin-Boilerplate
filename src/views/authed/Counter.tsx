@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { ApplicationState } from '../store';
-import * as CounterStore from '../store/Counter';
+import {ApplicationState} from "../../store/reducers";
+import {appActionCreators} from "../../store/actions";
+import {CounterState} from "../../store/reducers/Counter.reducer";
 
 type CounterProps =
-    CounterStore.CounterState &
-    typeof CounterStore.actionCreators &
+    CounterState &
+    typeof appActionCreators &
     RouteComponentProps<{}>;
 
 class Counter extends React.PureComponent<CounterProps> {
@@ -31,5 +32,5 @@ class Counter extends React.PureComponent<CounterProps> {
 
 export default connect(
     (state: ApplicationState) => state.counter,
-    CounterStore.actionCreators
-)(Counter);
+    appActionCreators
+)(Counter as any);
