@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Container, Row, Col, CardGroup, Card, CardText, CardBody, CardTitle, Button, Form, FormGroup, Label, Input, FormText, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Container, Row, Col, CardGroup, Card, CardBody, Button, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faKey } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 
 
@@ -17,20 +19,20 @@ const Login = () => (
                                   <FormGroup row>
                                       <InputGroup className="mb-3">
                                           <InputGroupAddon addonType="prepend">
-                                              <InputGroupText><i className="icon-user"/></InputGroupText>
+                                              <InputGroupText><FontAwesomeIcon icon={faUser} /></InputGroupText>
                                           </InputGroupAddon>
                                           <Input type="text" name="username" placeholder="Username" onChange={()=>{}}/>
                                       </InputGroup>
                                       <InputGroup className="mb-4">
                                           <InputGroupAddon addonType="prepend">
-                                              <InputGroupText><i className="icon-lock"/></InputGroupText>
+                                              <InputGroupText><FontAwesomeIcon icon={faKey} /></InputGroupText>
                                           </InputGroupAddon>
                                           <Input type="password" name="password" placeholder="Password" onChange={()=>{}}/>
                                       </InputGroup>
                                   </FormGroup>
                                   <FormGroup row>
                                       <Col>
-                                          <Button color="primary" className="px-4">Login</Button>
+                                          <Button color="primary">Login</Button>
                                       </Col>
                                   </FormGroup>
                               </Form>
