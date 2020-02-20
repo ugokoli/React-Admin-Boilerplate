@@ -22,26 +22,11 @@ class HttpConnection {
         this.session = new Session();
     }
 
-    /*
-     * npm start: development
-     * npm test: test
-     * npm run build: production
-     */
-    setBaseURL(serverConfig) {
-        switch (process.env.NODE_ENV) {
-            case "production":
-                this.BASE_URL = `https://bank.com${serverConfig.path}`;
-                break;
-            default:  // development
-                this.BASE_URL = `https://3bapp.innovantics.com${serverConfig.path}`;
-        }
-    }
-
     executeResource(method) {
         return {
             admin: (config) => {
                 config.method = method;
-                this.setBaseURL({local: 3001, remote: "", path: "/adminapp"});
+                this.BASE_URL = process.env.API_BASE_URL;
 
                 return this.connect(config)
             },
