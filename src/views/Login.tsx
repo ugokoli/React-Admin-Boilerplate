@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { Container, Row, Col, CardGroup, Card, CardBody, Button, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faKey } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard } from '@fortawesome/free-regular-svg-icons'
+import { faKey } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import {ApplicationState} from "../store/reducers";
 import {appActionCreators} from "../store/actions";
@@ -31,8 +32,6 @@ const Login: React.FC<LoginProps> = props => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        console.log(props);
-
         if (username.length > 3 && password.length > 4) {
             let btn = ReactDOM.findDOMNode(refSubmitBtn);
             props.requestLogin(btn, {username, password});
@@ -53,7 +52,7 @@ const Login: React.FC<LoginProps> = props => {
                                           <FormGroup row>
                                               <InputGroup className="mb-3">
                                                   <InputGroupAddon addonType="prepend">
-                                                      <InputGroupText><FontAwesomeIcon icon={faUser} /></InputGroupText>
+                                                      <InputGroupText><FontAwesomeIcon icon={faIdCard} /></InputGroupText>
                                                   </InputGroupAddon>
                                                   <Input type="text" name="username" placeholder="Username" value={username} onChange={handleUsernameChange}/>
                                               </InputGroup>

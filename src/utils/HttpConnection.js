@@ -26,7 +26,7 @@ class HttpConnection {
         return {
             admin: (config) => {
                 config.method = method;
-                this.BASE_URL = process.env.API_BASE_URL;
+                this.BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
                 return this.connect(config)
             },
