@@ -1,6 +1,6 @@
 import {AppThunkAction} from '../';
 import httpConn from "../../utils/HttpConnection";
-import {appActionCreators} from "./index";
+import {actionCreators as notificationAction} from "./Notification.action";
 import {NotificationView} from "./Notification.action";
 
 export const LOGIN_SUCCESS = '[ACCOUNT] LOGIN_SUCCESS';
@@ -16,9 +16,10 @@ export interface AccountAction {
 }
 
 export const actionCreators = {
-    requestLogin: (credential: LoginCredential): AppThunkAction<AccountAction> => (dispatch, getState) => {
+    requestLogin: (btn: any, credential: LoginCredential): AppThunkAction<AccountAction> => (dispatch, getState) => {
         httpConn().post.admin({
             url: "/operatorauth/login",
+            btn,
             data: {
                 emailAddress: credential.username,
                 password: credential.password
@@ -26,7 +27,7 @@ export const actionCreators = {
         }).then(response => {
             dispatch({ type: LOGIN_SUCCESS, token: response.data });
         }).catch(err => {
-            dispatch(appActionCreators.showNotification(NotificationView.Error, err.message));
+            dispatch(notificationAction.showNotification(NotificationView.Error, err.message));
         });
     }
 };

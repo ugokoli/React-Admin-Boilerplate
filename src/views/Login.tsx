@@ -7,15 +7,37 @@ import {ApplicationState} from "../store/reducers";
 import {appActionCreators} from "../store/actions";
 import {RouteComponentProps} from "react-router";
 import {AccountState} from "../store/reducers/Account.reducer";
+import ReactDOM from "react-dom";
 
 type LoginProps =
     AccountState &
     typeof appActionCreators &
     RouteComponentProps<{}>;
 
-const Login = (props: LoginProps) => {
+const Login: React.FC<LoginProps> = props => {
+    let refSubmitBtn: any = React.createRef();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleUsernameChange = (e: any) => {
+        setUsername(e.target.value)
+    };
+
+    const handlePasswordChange = (e: any) => {
+        setPassword(e.target.value)
+    };
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+
+        console.log(props);
+
+        if (username.length > 3 && password.length > 4) {
+            let btn = ReactDOM.findDOMNode(refSubmitBtn);
+            props.requestLogin(btn, {username, password});
+        }
+    };
 
     return(
         <div className="m-5">
@@ -25,7 +47,7 @@ const Login = (props: LoginProps) => {
                           <CardGroup className="mb-0">
                               <Card className="p-4">
                                   <CardBody className="card-body">
-                                      <Form className="form-horizontal" onSubmit={()=>{props.requestLogin({username, password})}}>
+                                      <Form onSubmit={handleSubmit}>
                                           <h1>Login</h1>
                                           <p className="text-muted">Sign In to your account</p>
                                           <FormGroup row>
@@ -33,18 +55,28 @@ const Login = (props: LoginProps) => {
                                                   <InputGroupAddon addonType="prepend">
                                                       <InputGroupText><FontAwesomeIcon icon={faUser} /></InputGroupText>
                                                   </InputGroupAddon>
-                                                  <Input type="text" name="username" placeholder="Username" onChange={e=>{setUsername(e.target.value)}}/>
+                                                  <Input type="text" name="username" placeholder="Username" value={username} onChange={handleUsernameChange}/>
                                               </InputGroup>
                                               <InputGroup className="mb-4">
                                                   <InputGroupAddon addonType="prepend">
                                                       <InputGroupText><FontAwesomeIcon icon={faKey} /></InputGroupText>
                                                   </InputGroupAddon>
-                                                  <Input type="password" name="password" placeholder="Password" onChange={e=>{setPassword(e.target.value)}}/>
+                                                  <Input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
                                               </InputGroup>
                                           </FormGroup>
                                           <FormGroup row>
                                               <Col>
-                                                  <Button color="primary">Login</Button>
+                                                  <Button
+                                                      type="submit"
+                                                      ref={(r) => refSubmitBtn = r}
+                                                      variant="contained"
+                                                      color="primary"
+                                                      className="ladda-button w-full mx-auto mt-16 normal-case"
+                                                      data-style="zoom-in"
+                                                      aria-label="Create"
+                                                  >
+                                                      <span className="ladda-label">Login</span>
+                                                  </Button>
                                               </Col>
                                           </FormGroup>
                                       </Form>

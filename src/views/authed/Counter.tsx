@@ -10,6 +10,7 @@ type CounterProps =
     typeof appActionCreators &
     RouteComponentProps<{}>;
 
+
 class Counter extends React.PureComponent<CounterProps> {
     public render() {
         return (
