@@ -1,19 +1,20 @@
 import { Action, Reducer } from 'redux';
-import {NOTIFICATION_SHOW, KnownAction} from "../actions/Notification.action";
+import {NOTIFICATION_SHOW, Notification, KnownAction} from "../actions/Notification.action";
 
 export interface NotificationState {
-    count: number;
+    logs: Notification[];
 }
 
 export const reducer: Reducer<NotificationState> = (state: NotificationState | undefined, incomingAction: Action): NotificationState => {
     if (state === undefined) {
-        return { count: 0 };
+        return { logs: [] };
     }
 
     const action = incomingAction as KnownAction;
     switch (action.type) {
         case NOTIFICATION_SHOW:
-            return { count: state.count + 1 };
+            state.logs.push(action.notification);
+            return { logs: state.logs };
         default:
             return state;
     }

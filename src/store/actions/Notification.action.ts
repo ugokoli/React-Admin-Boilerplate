@@ -1,16 +1,22 @@
 export const NOTIFICATION_SHOW = '[NOTIFICATION] SHOW';
 
 export enum NotificationView {
-    Success,
-    Info,
-    Warning,
-    Error,
+    Success = "success",
+    Info = "info",
+    Warning = "warning",
+    Error = "danger",
 }
 
-export interface showNotificationAction { type: string, view: NotificationView, message: string }
+export interface Notification {
+    type: NotificationView;
+    title?: string;
+    message: string;
+}
+
+export interface showNotificationAction { type: string, notification: Notification }
 
 export type KnownAction = showNotificationAction;
 
 export const actionCreators = {
-    showNotification: (view: NotificationView, message: string) => ({ type: NOTIFICATION_SHOW, view, message } as showNotificationAction),
+    showNotification: (notification: Notification) => ({ type: NOTIFICATION_SHOW, notification } as showNotificationAction),
 };

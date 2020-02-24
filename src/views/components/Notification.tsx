@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { Container } from 'reactstrap';
-import NavMenu from '../components/NavMenu';
-import ReactNotification from 'react-notifications-component';
+import React, {useEffect} from 'react';
+import ReactNotification from "react-notifications-component";
+import { store } from "react-notifications-component";
 import {connect} from "react-redux";
 import {ApplicationState} from "../../store/reducers";
 import {appActionCreators} from "../../store/actions";
@@ -15,6 +14,26 @@ type NotificationProps =
     RouteComponentProps<{}>;
 
 const Notification: React.FC<NotificationProps> = props => {
+    useEffect(() => {
+        if(props.logs.length > 0) {
+            const notification = props.logs[-1];
+
+            store.addNotification({
+                title: notification.title,
+                message: notification.message,
+                type: notification.type,
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                    duration: 10000,
+                    onScreen: true
+                }
+            });
+        }
+    }, [props.logs.length]);
+
     return (
         <React.Fragment>
             <ReactNotification />

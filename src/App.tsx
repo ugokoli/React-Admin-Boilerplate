@@ -6,7 +6,7 @@ import Login from './views/Login';
 import ProtectedViews from './views/authed';
 
 import 'react-notifications-component/dist/theme.css';
-import './custom.css';
+import './style.css';
 import Session from "./utils/Session";
 import Notification from "./views/components/Notification";
 

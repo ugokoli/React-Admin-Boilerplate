@@ -1,7 +1,7 @@
 import {AppThunkAction} from '../';
 import httpConn from "../../utils/HttpConnection";
 import {actionCreators as notificationAction} from "./Notification.action";
-import {NotificationView} from "./Notification.action";
+import {Notification, NotificationView} from "./Notification.action";
 
 export const LOGIN_SUCCESS = '[ACCOUNT] LOGIN_SUCCESS';
 
@@ -27,7 +27,7 @@ export const actionCreators = {
         }).then(response => {
             dispatch({ type: LOGIN_SUCCESS, token: response.data });
         }).catch(err => {
-            dispatch(notificationAction.showNotification(NotificationView.Error, err.message));
+            dispatch(notificationAction.showNotification({type:NotificationView.Error, message:err.message}));
         });
     }
 };
