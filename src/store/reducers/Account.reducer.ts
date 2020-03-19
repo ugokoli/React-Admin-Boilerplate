@@ -4,7 +4,7 @@ import {
     LOGIN_SUCCESS,
 } from "../actions/Account.action";
 
-export enum AdminRoles {
+export enum AdminRole {
     SuperAdmin = "super-admin",
     BranchAdmin = "branch-admin",
 }
@@ -12,7 +12,7 @@ export enum AdminRoles {
 export interface AccountState {
     jwt?: string;
     isLoggedIn: boolean;
-    role?: AdminRoles;
+    role?: AdminRole;
 }
 
 const initialState: AccountState = { isLoggedIn: false };

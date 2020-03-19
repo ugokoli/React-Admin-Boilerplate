@@ -1,11 +1,11 @@
 import React from "react";
-import {AdminRoles} from "../store/reducers/Account.reducer";
+import {AdminRole} from "../store/reducers/Account.reducer";
 import {RouteComponentProps, StaticContext} from "react-router";
 
 export interface Route {
     name: string;
     icon?: string;
-    auth?: AdminRoles;
+    auth?: AdminRole;
     path?: string;
     component?:
         React.FunctionComponent<any> |
@@ -16,14 +16,14 @@ export interface Route {
     children?: Route[];
 }
 
-export const getRoutesWithComponent = (routes: Route[]): Route[] => {
+export const getRoutesWithComponent = (routes: Route[], role: AdminRole): Route[] => {
     let allRoutes: Route[] = [];
     routes.map(route => {
         if(route.path && route.component) {
             allRoutes.push(route);
         }
         if(route.children) {
-            allRoutes.push(...getRoutesWithComponent(route.children));
+            allRoutes.push(...getRoutesWithComponent(route.children, role));
         }
     });
 

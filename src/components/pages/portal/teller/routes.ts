@@ -1,10 +1,10 @@
 import {AdminRole} from "../../../../store/reducers/Account.reducer";
 import {Route} from "../../../../utils/Route";
-import Dashboard from "./Dashboard";
+import Teller from "./Teller";
 
 export default (): Route => {
     return {
-        name: "Dashboard",
+        name: "Teller",
         icon: "",
         auth: AdminRole.SuperAdmin,
         children: [
@@ -12,7 +12,7 @@ export default (): Route => {
                 name: "",
                 icon: "",
                 path: "/",
-                component: Dashboard
+                component: Teller
             }
         ]
     }
