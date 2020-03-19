@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Container } from 'reactstrap';
-import NavMenu from '../components/NavMenu';
+import NavMenu from '../views/organisms/NavMenu';
 
 export default (props: { children?: React.ReactNode }) => (
     <React.Fragment>
-        <Container>
+        <NavMenu/>
+        <Container fluid>
             {props.children}
         </Container>
     </React.Fragment>

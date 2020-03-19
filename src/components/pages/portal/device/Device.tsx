@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import {ApplicationState} from "../../../store/reducers";
-import {appActionCreators} from "../../../store/actions";
-import {WeatherForecastsState} from "../../../store/reducers/WeatherForecasts.reducer";
+import {ApplicationState} from "../../../../store/reducers";
+import {appActionCreators} from "../../../../store/actions";
+import {WeatherForecastsState} from "../../../../store/reducers/WeatherForecasts.reducer";
 
 type TellerProps =
     WeatherForecastsState

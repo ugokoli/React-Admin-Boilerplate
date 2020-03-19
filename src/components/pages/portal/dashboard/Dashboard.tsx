@@ -2,9 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import {ApplicationState} from "../../../store/reducers";
-import {appActionCreators} from "../../../store/actions";
-import {WeatherForecastsState} from "../../../store/reducers/WeatherForecasts.reducer";
+import {ApplicationState} from "../../../../store/reducers";
+import {appActionCreators} from "../../../../store/actions";
+import {WeatherForecastsState} from "../../../../store/reducers/WeatherForecasts.reducer";
 
 type TellerProps =
     WeatherForecastsState
@@ -12,7 +12,7 @@ type TellerProps =
     & RouteComponentProps<{}>;
 
 
-class Branch extends React.PureComponent<TellerProps> {
+class Dashboard extends React.PureComponent<TellerProps> {
     public componentDidMount() {
     }
 
@@ -32,4 +32,4 @@ class Branch extends React.PureComponent<TellerProps> {
 export default connect(
     (state: ApplicationState) => state.weatherForecasts,
     appActionCreators
-)(Branch as any);
+)(Dashboard as any);
